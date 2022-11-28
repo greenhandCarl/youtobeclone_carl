@@ -33,7 +33,7 @@ jobs:
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
           cd /root/youtobeclone_carl/youtobeclone_backend
-          git pull origin master
+          git pull origin main
           npm install --production
           npm run stop
           npm run start
