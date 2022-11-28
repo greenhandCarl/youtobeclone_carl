@@ -6,7 +6,7 @@ on:
     
 jobs:
   build:
-    runs-on: ${{ martrix.os }}
+    runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
