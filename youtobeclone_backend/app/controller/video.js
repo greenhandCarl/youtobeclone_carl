@@ -61,10 +61,10 @@ class VideoController extends Controller {
       Video.countDocuments(),
     ]);
     this.ctx.body = 'test deploy';
-    this.ctx.body = {
-      videos,
-      videoCount,
-    };
+    // this.ctx.body = {
+    //   videos,
+    //   videoCount,
+    // };
   }
 
   async getUserVideos() {
