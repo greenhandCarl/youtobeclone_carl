@@ -1,0 +1,39 @@
+name: Node.js CI
+
+on:
+  push:
+    branches: [ master ]
+    
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      fail-fast: false
+      martrix:
+        node-version: [10]
+        os: [ubuntu-latest]
+    
+    steps:
+    - name: deploy
+      uses: appleboy/ssh-action@master
+      env:
+        ACCESSKEYID: ${{ secrets.ACCESSKEYID }}
+        ACCESSKEYSECRET: ${{ secrets.ACCESSKEYSECRET }}
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        envs: ACCESSKEYID,ACCESSKEYSECRET
+        script: |
+          export ACCESSKEYID=$ACCESSKEYID
+          export ACCESSKEYSECRET=$ACCESSKEYSECRET
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+          cd /root/youtobeclone_carl/youtobeclone_backend
+          git pull origin master
+          npm install --production
+          npm run stop
+          npm run start
