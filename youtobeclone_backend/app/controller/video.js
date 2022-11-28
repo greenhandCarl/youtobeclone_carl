@@ -60,11 +60,11 @@ class VideoController extends Controller {
         .limit(pageSize),
       Video.countDocuments(),
     ]);
-    this.ctx.body = 'test deploy';
-    // this.ctx.body = {
-    //   videos,
-    //   videoCount,
-    // };
+    // this.ctx.body = 'test deploy';
+    this.ctx.body = {
+      videos,
+      videoCount,
+    };
   }
 
   async getUserVideos() {
