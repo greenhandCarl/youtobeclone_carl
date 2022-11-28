@@ -10,7 +10,7 @@ jobs:
 
     strategy:
       fail-fast: false
-      martrix:
+      matrix:
         node-version: [10]
         os: [ubuntu-latest]
     
